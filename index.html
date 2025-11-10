@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A gift from Honey to Snuuu 💝</title>
+<style>
+body {
+    margin: 0;
+    background: radial-gradient(circle at top left, #ffb6c1, #ffc0cb, #fff0f5);
+    height: 100vh;
+    overflow: hidden;
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Balloon */
+.balloon {
+    position: absolute;
+    left: -200px;
+    top: 50%;
+    width: 120px;
+    animation: flyBalloon 6s ease-in-out forwards;
+    z-index: 3;
+    text-align: center;
+}
+@keyframes flyBalloon {
+    0% { left: -200px; top: 60%; }
+    40% { left: 40%; top: 30%; transform: scale(1.2); }
+    60% { left: 50%; top: 35%; transform: scale(1); }
+    80% { left: 55%; top: 35%; }
+    100% { left: 120vw; top: 10%; opacity: 0; }
+}
+.balloon-text {
+    position: absolute;
+    top: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-weight: 600;
+    color: white;
+    font-size: 0.9em;
+    text-shadow: 0 0 10px #ff66cc, 0 0 20px #ff0099;
+    z-index: 5;
+}
+.heart-shape {
+    width: 120px; height: 120px;
+    background: #ff477e;
+    position: relative;
+    transform: rotate(-45deg);
+    border-radius: 50% 50% 0 0;
+    margin: 0 auto;
+}
+.heart-shape::before,
+.heart-shape::after {
+    content: '';
+    position: absolute;
+    width: 120px; height: 120px;
+    background: #ff477e;
+    border-radius: 50%;
+}
+.heart-shape::before { top: 0; left: 60px; }
+.heart-shape::after { top: -60px; left: 0; }
+.basket {
+    position: absolute;
+    bottom: -40px;
+    left: 35px;
+    width: 50px;
+    height: 40px;
+    background: #a0522d;
+    border-radius: 6px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+}
+.string {
+    position: absolute;
+    width: 2px;
+    background: #fff;
+    top: 100px;
+    height: 40px;
+}
+.string.left { left: 45px; }
+.string.right { left: 75px; }
+
+/* Gift box */
+.gift-box {
+    position: absolute;
+    bottom: 10%;
+    width: 200px;
+    height: 200px;
+    background: #ff477e;
+    border-radius: 10px;
+    box-shadow: 0 0 30px rgba(255, 71, 126, 0.5);
+    cursor: pointer;
+    opacity: 0;
+    transform: translateY(-300px);
+    transition: transform 1.5s ease-out, opacity 1s ease;
+    z-index: 2;
+}
+.lid {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 50px;
+    background: #ff3366;
+    border-radius: 10px 10px 0 0;
+    transition: transform 0.6s ease;
+    transform-origin: bottom center;
+}
+.ribbon {
+    position: absolute;
+    width: 30px;
+    height: 100%;
+    background: #fff;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.ribbon::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 30px;
+    background: #fff;
+}
+
+/* Hidden message + neon heart */
+.hidden-message {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0;
+    transition: all 1.5s ease;
+    text-align: center;
+    color: white;
+    z-index: 3;
+}
+.hidden-message img {
+    width: 100%;
+    max-width: 450px;
+    border-radius: 20px;
+    animation: float 3s ease-in-out infinite;
+    position: relative;
+    z-index: 2;
+}
+@keyframes float {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0); }
+}
+
+/* Neon Heart Outline */
+.neon-heart {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 580px;
+    height: 520px;
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0;
+    z-index: 1;
+}
+.neon-heart svg path {
+    stroke: #ff00cc;
+    stroke-width: 6;
+    fill: none;
+    stroke-linecap: round;
+    stroke-dasharray: 2000;
+    stroke-dashoffset: 2000;
+    filter: drop-shadow(0 0 15px #ff00cc) drop-shadow(0 0 30px #ff66cc);
+    animation: drawHeart 3s ease forwards, pulse 2s ease-in-out infinite alternate 3s;
+}
+@keyframes drawHeart {
+    to { stroke-dashoffset: 0; opacity: 1; transform: scale(1); }
+}
+@keyframes pulse {
+    0% { filter: drop-shadow(0 0 15px #ff00cc); }
+    100% { filter: drop-shadow(0 0 30px #ff66cc); }
+}
+
+/* Floating hearts */
+.hearts {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0; left: 0;
+    pointer-events: none;
+    overflow: hidden;
+}
+.heart {
+    position: absolute;
+    color: rgba(255, 255, 255, 0.9);
+    animation: floatHearts 6s linear infinite;
+    font-size: 22px;
+}
+@keyframes floatHearts {
+    0% { transform: translateY(100vh) scale(0.8); opacity: 0.9; }
+    100% { transform: translateY(-10vh) scale(1.2); opacity: 0; }
+}
+
+/* Love text */
+.love-text {
+    font-size: 1.6em;
+    margin-top: 25px;
+    font-weight: 600;
+    color: #fff;
+    text-shadow: 0 0 15px #ff0099, 0 0 30px #ff66cc;
+    white-space: pre-wrap;
+    overflow: hidden;
+    border-right: 2px solid #fff;
+    animation: typing 5s steps(30) 1s forwards, blink 0.8s step-end infinite;
+}
+@keyframes typing { from { width: 0 } to { width: 100% } }
+@keyframes blink { 50% { border-color: transparent; } }
+
+/* Replay button */
+#replayBtn {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 12px 26px;
+    border: 2px solid #ff66cc;
+    border-radius: 30px;
+    background: white;
+    color: #ff66cc;
+    font-weight: 600;
+    font-size: 1em;
+    cursor: pointer;
+    opacity: 0;
+    transition: all 0.5s ease;
+    box-shadow: 0 0 10px rgba(255, 102, 204, 0.4);
+}
+#replayBtn:hover {
+    box-shadow: 0 0 20px #ff99dd;
+    transform: translateX(-50%) scale(1.05);
+}
+</style>
+</head>
+<body>
+
+<!-- Heart Balloon -->
+<div class="balloon" id="balloon">
+    <div class="balloon-text">A gift from Honey to Snuuu 💝</div>
+    <div class="heart-shape"></div>
+    <div class="string left"></div>
+    <div class="string right"></div>
+    <div class="basket"></div>
+</div>
+
+<!-- Gift box -->
+<div class="gift-box" id="giftBox">
+    <div class="lid" id="lid"></div>
+    <div class="ribbon"></div>
+</div>
+
+<!-- Hidden message -->
+<div class="hidden-message" id="hiddenMessage">
+    <img src="Picsart_25-11-10_12-20-56-631.jpg" alt="Love Image">
+    <div class="love-text">You are my happiness, my forever, my Snuuu 💕</div>
+</div>
+
+<!-- Neon Heart Outline -->
+<div class="neon-heart" id="neonHeart">
+<svg viewBox="0 0 500 450">
+    <path d="M250 410 C100 250 20 150 120 70 C180 20 260 50 250 130 C240 50 320 20 380 70 C480 150 400 250 250 410 Z" />
+</svg>
+</div>
+
+<div class="hearts" id="hearts"></div>
+
+<!-- Replay Button -->
+<button id="replayBtn" onclick="replaySurprise()">Replay Surprise 💞</button>
+
+<script>
+const giftBox = document.getElementById("giftBox");
+const lid = document.getElementById("lid");
+const hiddenMessage = document.getElementById("hiddenMessage");
+const heartsContainer = document.getElementById("hearts");
+const balloon = document.getElementById("balloon");
+const neonHeart = document.getElementById("neonHeart");
+const replayBtn = document.getElementById("replayBtn");
+
+const music = new Audio("https://tmpfiles.org/dl/7802411/ily.mp3");
+music.volume = 0.6;
+
+// Balloon drop + gift appearance
+setTimeout(() => {
+    giftBox.style.opacity = "1";
+    giftBox.style.transform = "translateY(0)";
+}, 2500);
+setTimeout(() => {
+    balloon.style.transition = "all 2s ease";
+    balloon.style.top = "10%";
+    balloon.style.left = "120vw";
+    balloon.style.opacity = "0";
+}, 4500);
+
+// Gift click
+giftBox.addEventListener("click", () => {
+    lid.style.transform = "rotateX(150deg)";
+    setTimeout(() => {
+        giftBox.style.display = "none";
+        hiddenMessage.style.transform = "translate(-50%, -50%) scale(1)";
+        hiddenMessage.style.opacity = "1";
+        neonHeart.style.transform = "translate(-50%, -50%) scale(1)";
+        neonHeart.style.opacity = "1";
+        startHearts();
+        music.play();
+        setTimeout(() => {
+            replayBtn.style.opacity = "1";
+        }, 3000);
+    }, 700);
+});
+
+function startHearts() {
+    setInterval(() => {
+        const heart = document.createElement("div");
+        heart.classList.add("heart");
+        heart.innerHTML = "💖";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.animationDuration = Math.random() * 3 + 3 + "s";
+        heartsContainer.appendChild(heart);
+        setTimeout(() => heart.remove(), 6000);
+    }, 300);
+}
+
+function replaySurprise() {
+    window.location.reload();
+}
+</script>
+
+</body>
+</html>
